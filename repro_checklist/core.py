@@ -1,5 +1,6 @@
 """Checklist items (inspired by common journal and conference reproducibility checklists) and detectors."""
 import fnmatch
+import json
 import os
 
 # section -> list of (id, question, detector name or None)
@@ -85,7 +86,6 @@ def auto_detect(root):
         det["pinned"] = (False, "no dependency file")
     nb = _exists(root, "*.ipynb")
     if nb:
-        import json
         dirty = 0
         for dp, _, fns in os.walk(root):
             for fn in fns:
